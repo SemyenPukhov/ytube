@@ -1,0 +1,27 @@
+.container-fluid {
+    margin-bottom: 50px;
+}
+.row {
+    padding-top:20px
+}
+.sidenav {
+    height: 100%;
+
+    overflow-x: hidden;
+    position: fixed;
+    height: 100%;
+    padding-bottom: 100px;
+}
+
+.custom {
+    height: 45px;
+    width: 140px;
+}
+
+.custom-link{
+    padding-top: 0.0rem;
+    padding-right: 0rem;
+    padding-bottom: 0.0rem;
+    padding-left: 0rem;
+
+}

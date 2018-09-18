@@ -1,6 +1,4 @@
-var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost:27017';
-
+var model = require('../models/model');
 var menu = [
     {item: "<a href='#' class='custom-link'><img src='images/house.png' width='20px' height='18px'> Home</a>"},
     {item: "<a href='#' class='custom-link'><img src='images/trend.png' width='20px' height='20px'> Trends</a>"},
@@ -21,19 +19,12 @@ var menu = [
 
 module.exports = function (app) {
     app.get('/youtube', function(req, res) {
-        MongoClient.connect(url, function(err, client) {
-            if (err)
-                throw err;
-            var db = client.db('youtube');
-            console.log("Connected to db");
-            db.collection('videos').find().toArray(function(err, docs) {
-                if (err) {
-                    console.log("Find error");
-                    res.sendStatus(500);
-                }
-                res.render('homePage', {menuItems: menu, videos: docs});
-            });
-        });
+
+      model.getAll().then(function(data) {
+          res.render('homePage', {menuItems: menu, videos: data});
+      }, function(err) {
+           throw err;
+      });
     });
     /*app.get('/write', function(req, res) {
         MongoClient.connect(url, function(err, client) {
